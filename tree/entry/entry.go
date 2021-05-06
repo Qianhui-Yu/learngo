@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"learngo/tree"
+	"math"
 )
 
 // 利用组合来扩展别人的结构: 把别人的结构包装起来，再给这个新的结构挂载新函数，通过新结构访问别人的结构并使用新函数
@@ -50,7 +51,7 @@ func main() {
 	//内嵌后tree.Node能调用的，新结构变量root也能直接调用，这才是内嵌扩展最方便的地方
 	//原结构的变量和函数都能直接调用，还能挂载自己新的变量和函数
 	root.Left = &tree.Node{}
-	root.Right = &tree.Node{5, nil, nil}
+	root.Right = &tree.Node{Val: 5}
 	root.Right.Left = new(tree.Node)
 	root.Left.Right = tree.CreateTreeNode(3)
 
@@ -87,4 +88,15 @@ func main() {
 		count++
 	})
 	fmt.Println("Node count:", count)
+
+	fmt.Println("Test Traverse with Channel")
+	c := root.TraverseWithChannel()
+	max := math.MinInt32
+	for n := range c {
+		fmt.Printf("Received %d from channel\n", n.Val)
+		if n.Val > max {
+			max = n.Val
+		}
+	}
+	fmt.Println("Max Node Value =", max)
 }
