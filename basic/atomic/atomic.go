@@ -1,6 +1,10 @@
 package main
 
-import "sync"
+import (
+	"fmt"
+	"sync"
+	"time"
+)
 
 type atomicInt struct {
 	val int
@@ -19,6 +23,19 @@ func (a *atomicInt) get() int{
 	return a.val
 }
 
-func main() {
+func test() (res string) {
+	res = "abccccc"
+	return
+}
 
+func main() {
+	var a atomicInt
+	a.increment()
+	go func() {
+		a.increment()
+	}()
+	time.Sleep(time.Millisecond)
+	fmt.Println("a =", a.get())
+
+	fmt.Println(test())
 }

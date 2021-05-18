@@ -3,6 +3,8 @@ package main
 import "fmt"
 
 func main() {
+	var mm map[int]int
+	fmt.Println(len(mm))
 	m1 := map[string]string{
 		"name":   "qianhui",
 		"gender": "male",
@@ -10,6 +12,7 @@ func main() {
 		"xxx":    "yyy",
 	}
 	m2 := make(map[string]int)       // m2 == empty map
+	fmt.Println(len(m2))
 	var m3 map[int]map[string]string // m3 == nil go中的nil可以安全参与运算
 
 	fmt.Println(m1)
