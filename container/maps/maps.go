@@ -2,6 +2,11 @@ package main
 
 import "fmt"
 
+type group struct {
+	id string
+	name string
+}
+
 func main() {
 	var mm map[int]int
 	fmt.Println(len(mm))
@@ -30,7 +35,19 @@ func main() {
 
 	m2["a"] = 1
 	m2["b"] = 2
-
+	for k, v := range m2 {
+		fmt.Printf("k = %v, v = %v\n", k, v)
+	}
 	v, ok := m2["c"]
 	fmt.Println(v, ok) // "c"不存在，所以v是int的初始值0
+
+	var groupMap = map[string]*group{}
+	fmt.Println(groupMap) // map[]
+	g := groupMap["xxx"]
+	fmt.Println(g == nil) // true
+	if g, ok := groupMap["yyy"]; ok {
+		fmt.Println(g)
+	} else {
+		fmt.Println("val is nil")
+	}
 }

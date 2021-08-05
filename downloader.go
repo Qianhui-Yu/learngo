@@ -36,4 +36,6 @@ func main() {
 	//var retriever ? = getRetriever() //需要一个？来实现类型的自由绑定
 	retriever := getRetriever()
 	fmt.Printf("%s\n", retriever.Get(url))
+
+
 }
